@@ -4,7 +4,7 @@ FROM frolvlad/alpine-glibc
 # apk gmp make musl-dev gcc are required for building sysconfcpus
 # apk yarn depends on nodejs-current, which can be node 9.x
 RUN apk update \
-  && apk add musl-dev gcc gmp make git openssh-client bash yarn \
+  && apk add musl-dev gcc gmp make git openssh bash yarn \
   && addgroup -S elm && adduser -G elm -S elm \
   && git clone https://github.com/obmarg/libsysconfcpus.git /tmp/libsysconfcpus \
   && cd /tmp/libsysconfcpus \
