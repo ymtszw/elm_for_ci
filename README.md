@@ -3,7 +3,7 @@
 ![Docker Automated build](https://img.shields.io/docker/automated/ymtszw/elm_for_ci.svg)
 ![Docker Build Status](https://img.shields.io/docker/build/ymtszw/elm_for_ci.svg)
 
-Docker image with globally installed [Elm Platform](https://github.com/elm-lang/elm-platform)
+Docker image with globally installed [Elm Platform 0.18](https://github.com/elm-lang/elm-platform)
 and [elm-test](https://github.com/rtfeldman/node-test-runner), suitable for testing Elm codes in docker-based CI.
 
 - Using Alpine Linux for smaller image size ([frol/docker-alpine-glibc](https://github.com/frol/docker-alpine-glibc))
@@ -14,7 +14,7 @@ and [elm-test](https://github.com/rtfeldman/node-test-runner), suitable for test
 
 ## Example Usage
 
-In CircleCI,
+In CircleCI 2.0,
 
 ```yaml
 version: 2
@@ -43,3 +43,7 @@ workflows:
     jobs:
       - test
 ```
+
+## License
+
+BSD-3-Clause
