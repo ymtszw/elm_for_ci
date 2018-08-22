@@ -11,6 +11,7 @@ and [elm-test](https://github.com/rtfeldman/node-test-runner), suitable for test
 - `elm` user is used, not `sudo`-able
 - `elm-make` is modified to be called via `sysconfcpus` as per the workaround discussed
   in [this issue](https://github.com/elm/compiler/issues/1473#issuecomment-245704142).
+- Also includes [elm-verify-examples](https://github.com/stoeffel/elm-verify-examples)
 
 ## Example Usage
 
@@ -24,18 +25,17 @@ jobs:
       - image: ymtszw/elm_for_ci
     working_directory: ~/repo
     steps:
-      - checkout
       - restore_cache:
           keys:
-          - elm-stuff-{{ .Branch }}-{{ .Revision }}
-          - elm-stuff-{{ .Branch }}-
-          - elm-stuff-
+          - repo-{{ .Branch }}-{{ .Revision }}
+          - repo-{{ .Branch }}-
+          - repo-
+      - checkout
       - run: elm-test
       - save_cache:
           paths:
-            - elm-stuff
-            - tests/elm-stuff
-          key: elm-stuff-{{ .Branch }}-{{ .Revision }}
+            - .
+          key: repo-{{ .Branch }}-{{ .Revision }}
 
 workflows:
   version: 2
