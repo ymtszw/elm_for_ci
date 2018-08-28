@@ -21,8 +21,9 @@ WORKDIR /home/elm
 
 ENV PATH=/home/elm/.yarn/bin:/usr/local/sysconfcpus/bin:$PATH
 
-RUN yarn global add elm@0.18 elm-test@0.18 elm-verify-examples@2.3.1 \
-  && mv /home/elm/.yarn/bin/elm-make /home/elm/.yarn/bin/elm-make-orig \
+RUN yarn global add elm@0.19 elm-test@0.19.0-beta4 \
+  #TODO: Add elm-verify-examples when updated
+  && mv /home/elm/.yarn/bin/elm /home/elm/.yarn/bin/elm-orig \
   # Removing yarn cache in order to reducing image size
   && rm -rf /home/elm/.cache
-COPY --chown=elm:elm elm-make /home/elm/.yarn/bin/elm-make
+COPY --chown=elm:elm elm /home/elm/.yarn/bin/elm
