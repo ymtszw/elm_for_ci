@@ -27,3 +27,4 @@ RUN yarn global add elm@0.19 elm-test@0.19.0-beta4 \
   # Removing yarn cache in order to reducing image size
   && rm -rf /home/elm/.cache
 COPY --chown=elm:elm elm /home/elm/.yarn/bin/elm
+RUN ls -lha /home/elm/.yarn/bin/
