@@ -24,7 +24,7 @@ ENV PATH=/home/elm/.yarn/bin:/usr/local/sysconfcpus/bin:$PATH
 RUN yarn global add \
   elm@0.19 \
   elm-test@0.19.0-beta8 \
-  #TODO: Add elm-verify-examples when updated
+  elm-verify-examples@3 \
   uglify-js@3 \
   && mv /home/elm/.yarn/bin/elm /home/elm/.yarn/bin/elm-orig \
   # Removing yarn cache in order to reducing image size

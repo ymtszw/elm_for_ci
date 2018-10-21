@@ -12,7 +12,7 @@ and [elm-test](https://github.com/rtfeldman/node-test-runner), suitable for test
 - `elm-make` is modified to be called via `sysconfcpus` as per the workaround discussed
   in [this issue](https://github.com/elm/compiler/issues/1473#issuecomment-245704142).
 - Also includes:
-    - [elm-verify-examples](https://github.com/stoeffel/elm-verify-examples) (Not yet ready for 0.19 branch)
+    - [elm-verify-examples](https://github.com/stoeffel/elm-verify-examples)
     - [uglifyjs](https://github.com/mishoo/UglifyJS2) (>= 3)
 
 ## Example Usage
