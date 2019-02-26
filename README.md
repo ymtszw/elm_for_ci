@@ -16,7 +16,7 @@ Suitable for testing/building Elm applications or packages in docker-based CI.
     - Since Elm 0.19, we can also use Haskell runtime system option like `+RTS -N2`
     - However, community tools that indirectly use `elm` may not support command line option passing,
       so in this image we keep wrapping global `elm` CLI with `sysconfcpus`.
-    - CPU core numbers passed to `elm` CLI can be customized using `N_CORES` environment variable. Defaults to 2.
+    - Number of cores passed to `elm` CLI can be customized using `N_CORES` environment variable. Defaults to 2.
 - Included CLI tools:
     - [elm]
     - [elm-test]
