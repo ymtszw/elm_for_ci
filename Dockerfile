@@ -2,13 +2,12 @@
 FROM frolvlad/alpine-glibc
 
 # apk gmp make musl-dev gcc are required for building sysconfcpus
-# apk yarn depends on nodejs-current, which can be node 9.x
 RUN apk update \
-  && apk add musl-dev gcc gmp make git openssh bash yarn \
-  && addgroup -S elm && adduser -G elm -S elm \
+  && apk upgrade \
+  && apk add musl-dev gcc gmp make git openssh bash nodejs-current yarn \
   && git clone https://github.com/obmarg/libsysconfcpus.git /tmp/libsysconfcpus \
   && cd /tmp/libsysconfcpus \
-  && ./configure --prefix="/usr/local/sysconfcpus" \
+  && ./configure --prefix=/usr/local/sysconfcpus \
   && make \
   && make install \
   # Removing no longer required packages in order to reducing image size
@@ -16,13 +15,19 @@ RUN apk update \
   && cd /tmp \
   && rm -rf /tmp/libsysconfcpus
 
-USER elm
-WORKDIR /home/elm
+ENV PATH=/usr/local/sysconfcpus/bin:$PATH
 
-ENV PATH=/home/elm/.yarn/bin:/usr/local/sysconfcpus/bin:$PATH
-
-RUN yarn global add elm@0.18 elm-test@0.18 elm-verify-examples@2.3.1 \
-  && mv /home/elm/.yarn/bin/elm-make /home/elm/.yarn/bin/elm-make-orig \
+RUN yarn global add \
+    elm@0.19 \
+    elm-test@0.19.0 \
+    elm-verify-examples@3 \
+    elm-analyse \
+    elm-xref \
+    uglify-js@3 \
+    elm-minify \
+    google-closure-compiler \
+  && mv /usr/local/bin/elm /usr/local/bin/elm-orig \
   # Removing yarn cache in order to reducing image size
-  && rm -rf /home/elm/.cache
-COPY --chown=elm:elm elm-make /home/elm/.yarn/bin/elm-make
+  && yarn cache clean
+COPY elm /usr/local/bin/elm
+RUN chmod +x /usr/local/bin/elm && ls -lha /usr/local/bin
