@@ -18,14 +18,14 @@ RUN apk update \
 ENV PATH=/usr/local/sysconfcpus/bin:$PATH
 
 RUN yarn global add \
-    elm@0.19 \
-    elm-test@0.19.0 \
-    elm-verify-examples@3 \
-    elm-analyse \
-    elm-xref \
-    uglify-js@3 \
-    elm-minify \
-    google-closure-compiler \
+  elm@0.19.1 \
+  elm-test@0.19.1 \
+  elm-verify-examples@5 \
+  elm-analyse \
+  elm-xref \
+  uglify-js@3 \
+  elm-minify \
+  google-closure-compiler \
   && mv /usr/local/bin/elm /usr/local/bin/elm-orig \
   # Removing yarn cache in order to reducing image size
   && yarn cache clean
